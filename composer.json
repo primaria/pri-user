@@ -40,7 +40,7 @@
 	"extra" : {
 		"bootstrap" : "primaria\\user\\Bootstrap",
 		"branch-alias" : {
-			"dev-master" : "0.0.x-dev",
+			"dev-master" : "0.0.1-dev",
 			"dev-develop" : "0.1.x-dev"
 		}
 	}
