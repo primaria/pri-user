@@ -5,7 +5,7 @@ use Yii;
 use yii\base\Model;
 
 /**
- * Login form
+ * Login form the primaria
  */
 class LoginForm extends Model
 {
