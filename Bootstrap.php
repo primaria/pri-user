@@ -9,7 +9,7 @@
  * file that was distributed with this source code.
  */
 
-namespace abenavid\user;
+namespace primaria\user;
 
 use Yii;
 use yii\authclient\Collection;
@@ -21,17 +21,17 @@ use yii\i18n\PhpMessageSource;
  * Bootstrap class registers module and user application component. It also creates some url rules which will be applied
  * when UrlManager.enablePrettyUrl is enabled.
  *
- * @author Dmitry Erofeev <dmeroff@gmail.com>
+ * @author primaria
  */
 class Bootstrap implements BootstrapInterface
 {
     /** @var array Model's map */
     /** @var Mapa de agreglos del modelo */
     private $_modelMap = [
-        'User'              => 'abenavid\user\models\User',
-        'UserQuery'         => 'abenavid\user\models\UserQuery',
-        'SignupForm'        => 'abenavid\user\models\SignupForm',
-        
+        'User'              => 'primaria\user\models\User',
+        'UserQuery'         => 'primaria\user\models\UserQuery',
+        'SignupForm'        => 'primaria\user\models\SignupForm',
+
         /* 'Account'          => 'abenavid\user\models\Account',
         'Profile'          => 'abenavid\user\models\Profile',
         'Token'            => 'abenavid\user\models\Token',
@@ -49,8 +49,8 @@ class Bootstrap implements BootstrapInterface
         /** @var User $module */
         /** @var \yii\db\ActiveRecord $modelName */
 
-        
-        if ( $app->hasModule('user') && ($module = $app->getModule('user')) instanceof User) 
+
+        if ( $app->hasModule('user') && ($module = $app->getModule('user')) instanceof User)
         {
            // unifica el mapeo de modulos
             $this->_modelMap = array_merge($this->_modelMap, $module->modelMap);
@@ -61,7 +61,7 @@ class Bootstrap implements BootstrapInterface
                 $modelName = is_array($definition) ? $definition['class'] : $definition;
                 $module->modelMap[$name] = $modelName;
                 if (in_array($name, ['User', 'Profile', 'Token', 'Account'])) {
-                    Yii::$container->set($name . 'Query', function () use ($modelName) 
+                    Yii::$container->set($name . 'Query', function () use ($modelName)
                     {
                         return $modelName::find();
                     });
@@ -73,7 +73,7 @@ class Bootstrap implements BootstrapInterface
                 'loginUrl'        => ['/user/default/login'],
                 'identityClass'   => $module->modelMap['User'],
             ]);
-          
+
             if (!isset($app->get('i18n')->translations['user*'])) {
                 $app->get('i18n')->translations['user*'] = [
                     'class'    => PhpMessageSource::className(),
@@ -81,8 +81,8 @@ class Bootstrap implements BootstrapInterface
                     'sourceLanguage' => 'en-US'
                 ];
             }
-            
+
         }
-        
+
     }
 }

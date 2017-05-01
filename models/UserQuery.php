@@ -1,6 +1,6 @@
 <?php
 
-namespace abenavid\user\models;
+namespace primaria\user\models;
 
 use Yii\db\ActiveQuery;
 

@@ -1,9 +1,9 @@
 <?php
-namespace abenavid\user\models;
+namespace primaria\user\models;
 
 use Yii;
 use yii\base\Model;
-use abenavid\user\models\User;
+use primaria\user\models\User;
 
 /**
  * Password reset request form
@@ -23,7 +23,7 @@ class PasswordResetRequestForm extends Model
             ['email', 'required'],
             ['email', 'email'],
             ['email', 'exist',
-                'targetClass' => '\abenavid\user\models\User',
+                'targetClass' => '\primaria\user\models\User',
                 'filter' => ['status' => User::STATUS_ACTIVE],
                 'message' => 'There is no user with such email.'
             ],
@@ -46,19 +46,19 @@ class PasswordResetRequestForm extends Model
         if (!$user) {
             return false;
         }
-        
+
         if (!User::isPasswordResetTokenValid($user->password_reset_token)) {
             $user->generatePasswordResetToken();
             if (!$user->save()) {
                 return false;
             }
         }
-        
+
         echo "<PRE>";
         print_r(Yii::$app->mailer);
         echo "</PRE>";
         die();
-        
+
         return Yii::$app
             ->mailer
             ->compose(

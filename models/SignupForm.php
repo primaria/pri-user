@@ -1,8 +1,8 @@
 <?php
-namespace abenavid\user\models;
+namespace primaria\user\models;
 
 use yii\base\Model;
-use abenavid\user\models\User;
+use primaria\user\models\User;
 
 
 /**
@@ -51,7 +51,7 @@ public function signup()
         if (!$this->validate()) {
             return null;
         }
-        
+
         $user = new User();
         $user->username = $this->username;
         $user->email = $this->email;
