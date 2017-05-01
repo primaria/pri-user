@@ -1,0 +1,47 @@
+{
+	"name" : "primaria/pri-user",
+	"description" : "Flexible user registration and authentication module for Yii2",
+	"keywords" : [
+		"yii2",
+		"yii2-user",
+		"user management",
+		"primaria"
+	],
+	"type" : "yii2-extension",
+	"license" : "MIT",
+	"support" : {
+		"issues" : "https://github.com/primaria/pri-user/issues?state=open",
+		"forum" : "https://gitter.im/primaria/pri-user",
+		"source" : "https://github.com/primaria/pri-user"
+	},
+	"authors" : [{
+			"name" : "alfonso",
+			"email" : "abenavid@vivebuin.cl",
+			"homepage" : "http://www.vivebuin.cl"
+		}
+	],
+	"minimum-stability" : "dev",
+	"require" : {
+		"yiisoft/yii2" : "^2.0.0",
+		"yiisoft/yii2-swiftmailer" : "^2.0.0",
+		"yiisoft/yii2-authclient" : "^2.1.0",
+		"yiisoft/yii2-bootstrap" : "^2.0.0"
+	},
+	"require-dev" : {
+		"yiisoft/yii2-codeception" : "^2.0.0",
+		"codeception/specify" : "^0.4.3",
+		"codeception/verify" : "^0.3.1"
+	},
+	"autoload" : {
+		"psr-4" : {
+			"primaria\\user\\" : ""
+		}
+	},
+	"extra" : {
+		"bootstrap" : "primaria\\user\\Bootstrap",
+		"branch-alias" : {
+			"dev-master" : "0.0.x-dev",
+			"dev-develop" : "0.1.x-dev"
+		}
+	}
+}
