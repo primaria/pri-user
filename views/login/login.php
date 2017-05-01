@@ -1,23 +1,16 @@
 <?php
 
-/*
- * This file is part of the Dektrium project.
- *
- * (c) Dektrium project <http://github.com/dektrium>
- *
- * For the full copyright and license information, please view the LICENSE.md
- * file that was distributed with this source code.
- */
 
-use rimaria\user\widgets\Connect;
-use primaria\user\models\LoginForm;
+use dektrium\user\widgets\Connect;
+use dektrium\user\models\LoginForm;
 use yii\helpers\Html;
 use yii\widgets\ActiveForm;
+use primaria\user\User;
 
 /**
  * @var yii\web\View $this
- * @var dektrium\user\models\LoginForm $model
- * @var dektrium\user\Module $module
+ * @var primaria\user\models\LoginForm $model
+ * @var primaria\user\User $module
  */
 
 $this->title = Yii::t('user', 'Sign in');
