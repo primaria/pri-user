@@ -9,9 +9,9 @@ use yii\web\Response;
 use yii\filters\VerbFilter;
 use yii\filters\AccessControl;
 use yii\widgets\ActiveForm;
-use abenavid\user\models\LoginForm;
-use abenavid\user\models\SignupForm;
-use abenavid\user\models\PasswordResetRequestForm;
+use primaria\user\models\LoginForm;
+use primaria\user\models\SignupForm;
+use primaria\user\models\PasswordResetRequestForm;
 
 
 
