@@ -1,4 +1,5 @@
 <?php
+namespace primaria\user;
 
 /*
  * This file is part of the Primaria user.
@@ -8,7 +9,7 @@
  * For the full copyright and license information, please view the LICENSE
  * file that was distributed with this source code.
  */
-namespace primaria\user;
+
 
 
 
