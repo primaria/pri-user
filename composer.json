@@ -34,7 +34,7 @@
 	},
 	"autoload" : {
 		"psr-4" : {
-			"primaria\\user\\" : "*"
+			"primaria\\user\\" : ""
 		}
 	},
 	"extra" : {
