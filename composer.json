@@ -1,7 +1,7 @@
 {
 	"name" : "primaria/pri-user",
 	"description" : "Flexible user registration and authentication module for Yii2",
-	"version" : "0.0.1",
+	"version" : "0.1",
 	"keywords" : [
 		"yii2",
 		"primaria-user",
@@ -41,8 +41,7 @@
 	"extra" : {
 		"bootstrap" : "primaria\\user\\Bootstrap",
 		"branch-alias" : {
-			"dev-master" : "0.0.1-dev",
-			"dev-develop" : "1.0.x-dev"
+			"dev-master" : "0.1.0-dev"
 		}
 	}
 }
