@@ -3,7 +3,7 @@
 /*
  * This file is part of the Dektrium project.
  *
- * (c) Dektrium project <http://github.com/dektrium/>
+ * (c) Primaria project <http://github.com/primaria/>
  *
  * For the full copyright and license information, please view the LICENSE
  * file that was distributed with this source code.
@@ -18,10 +18,11 @@ use yii\console\Application as ConsoleApplication;
 use yii\i18n\PhpMessageSource;
 
 /**
- * Bootstrap class registers module and user application component. It also creates some url rules which will be applied
+ * La clase Bootstrap registra el módulo y el componente de aplicación del usuario.
+ * También crea algunas reglas de url que se aplicarán
  * when UrlManager.enablePrettyUrl is enabled.
  *
- * @author Dmitry Erofeev <dmeroff@gmail.com>
+ * @author Primaria
  */
 class Bootstrap implements BootstrapInterface
 {
@@ -99,7 +100,7 @@ class Bootstrap implements BootstrapInterface
                 $app->get('i18n')->translations['user*'] = [
                     'class' => PhpMessageSource::className(),
                     'basePath' => __DIR__ . '/messages',
-                    'sourceLanguage' => 'en-US'
+                    'sourceLanguage' => 'es-ES'
                 ];
             }
 
