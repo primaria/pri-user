@@ -9,11 +9,11 @@
  * file that was distributed with this source code.
  */
 
-namespace dektrium\user\models;
+namespace primaria\user\models;
 
-use dektrium\user\Finder;
-use dektrium\user\helpers\Password;
-use dektrium\user\traits\ModuleTrait;
+//use dektrium\user\Finder;
+//use dektrium\user\helpers\Password;
+//use dektrium\user\traits\ModuleTrait;
 use yii\helpers\ArrayHelper;
 use yii\helpers\Html;
 use Yii;
@@ -23,7 +23,7 @@ use yii\base\Model;
  * LoginForm get user's login and password, validates them and logs the user in. If user has been blocked, it adds
  * an error to login form.
  *
- * @author Dmitry Erofeev <dmeroff@gmail.com>
+ * @author Primaria
  */
 class LoginForm extends Model
 {
@@ -53,7 +53,7 @@ class LoginForm extends Model
         $this->finder = $finder;
         parent::__construct($config);
     }
-    
+
     /**
      * Gets all users to generate the dropdown list when in debug mode.
      *
