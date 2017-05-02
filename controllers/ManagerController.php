@@ -1,5 +1,6 @@
 <?php
-namespace abenavid\user\controllers;
+
+namespace primaria\user\controllers;
 
 use Yii;
 use yii\base\InvalidParamException;
