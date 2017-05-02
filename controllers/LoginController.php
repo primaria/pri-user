@@ -19,7 +19,7 @@ use abenavid\user\models\PasswordResetRequestForm;
 /**
  * Default controller for the `Users` module
  */
-class DefaultController extends Controller
+class LoginController extends Controller
 {
 
     /**
