@@ -78,9 +78,9 @@ class Bootstrap implements BootstrapInterface
                 'accountQuery' => Yii::$container->get('AccountQuery'),
             ]);*/
 
-            /*if ($app instanceof ConsoleApplication) {
-                $module->controllerNamespace = 'dektrium\user\commands';
-            } else {*/
+            if ($app instanceof ConsoleApplication) {
+                $module->controllerNamespace = 'primaria\user\commands';
+            } else {
                 Yii::$container->set('yii\web\User', [
                     'enableAutoLogin' => true,
                     'loginUrl'        => ['/user/login/login'],
@@ -106,7 +106,7 @@ class Bootstrap implements BootstrapInterface
                         'class' => Collection::className(),
                     ]);
                 }
-            //}
+            }
 
             if (!isset($app->get('i18n')->translations['user*'])) {
                 $app->get('i18n')->translations['user*'] = [
