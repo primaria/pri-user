@@ -15,7 +15,6 @@ use primaria\user\Finder;
 use primaria\user\models\Account;
 use primaria\user\models\LoginForm;
 use primaria\user\models\User;
-use primaria\user\User;
 use primaria\user\traits\AjaxValidationTrait;
 use primaria\user\traits\EventTrait;
 use yii\authclient\AuthAction;
