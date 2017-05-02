@@ -1,8 +1,11 @@
 <?php
 namespace primaria\user\models;
 
+use yii\helpers\ArrayHelper;
+use yii\helpers\Html;
 use Yii;
 use yii\base\Model;
+
 
 /**
  * Login form the primaria
