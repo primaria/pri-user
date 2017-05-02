@@ -11,7 +11,7 @@
 
 namespace primaria\user\controllers;
 
-//use primaria\user\Finder;
+use primaria\user\Finder;
 use primaria\user\models\Account;
 use primaria\user\models\LoginForm;
 use primaria\user\models\User;
