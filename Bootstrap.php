@@ -31,12 +31,12 @@ class Bootstrap implements BootstrapInterface
         'User'              => 'primaria\user\models\User',
         'UserQuery'         => 'primaria\user\models\UserQuery',
         'SignupForm'        => 'primaria\user\models\SignupForm',
-        'Profile'           => 'primaria\user\models\Profile',
+        /*'Profile'           => 'primaria\user\models\Profile',
         'Token'             => 'primaria\user\models\Token',
         'LoginForm'         => 'primaria\user\models\LoginForm',
         'Account'           => 'primaria\user\models\Account',
 
-        /*
+
 
 
         'ResendForm'       => 'abenavid\user\models\ResendForm',
@@ -71,12 +71,12 @@ class Bootstrap implements BootstrapInterface
                 }
             }
 
-            Yii::$container->setSingleton(Finder::className(), [
+            /*Yii::$container->setSingleton(Finder::className(), [
                 'userQuery'    => Yii::$container->get('UserQuery'),
                 'profileQuery' => Yii::$container->get('ProfileQuery'),
                 'tokenQuery'   => Yii::$container->get('TokenQuery'),
                 'accountQuery' => Yii::$container->get('AccountQuery'),
-            ]);
+            ]);*/
 
             if ($app instanceof ConsoleApplication) {
                 $module->controllerNamespace = 'primaria\user\commands';
@@ -87,7 +87,7 @@ class Bootstrap implements BootstrapInterface
                     'identityClass'   => $module->modelMap['User'],
                 ]);
 
-                $configUrlRule = [
+                /*$configUrlRule = [
                     'prefix' => $module->urlPrefix,
                     'rules'  => $module->urlRules,
                 ];
@@ -105,14 +105,14 @@ class Bootstrap implements BootstrapInterface
                     $app->set('authClientCollection', [
                         'class' => Collection::className(),
                     ]);
-                }
+                }*/
             }
 
             if (!isset($app->get('i18n')->translations['user*'])) {
                 $app->get('i18n')->translations['user*'] = [
                     'class'    => PhpMessageSource::className(),
                     'basePath' => __DIR__ . '/messages',
-                    'sourceLanguage' => 'es-ES'
+                    'sourceLanguage' => 'es'
                 ];
             }
 
