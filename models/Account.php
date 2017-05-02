@@ -38,7 +38,7 @@ use yii\helpers\Url;
  */
 class Account extends ActiveRecord
 {
-    use ModuleTrait;
+    //use ModuleTrait;
 
     /** @var Finder */
     protected static $finder;
