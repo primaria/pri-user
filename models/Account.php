@@ -9,7 +9,7 @@
  * file that was distributed with this source code.
  */
 
-namespace prueba\user\models;
+namespace primaria\user\models;
 
 //use primaria\user\clients\ClientInterface;
 use primaria\user\Finder;
