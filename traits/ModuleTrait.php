@@ -1,9 +1,9 @@
 <?php
 
 
-namespace dektrium\user\traits;
+namespace primaria\user\traits;
 
-use dektrium\user\Module;
+use primaria\user\User;
 
 /**
  * Trait ModuleTrait

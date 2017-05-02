@@ -1,27 +1,27 @@
 <?php
 
 /*
- * This file is part of the Dektrium project.
+ * This file is part of the primaria project.
  *
- * (c) Dektrium project <http://github.com/dektrium/>
+ * (c) primaria project <http://github.com/primaria/>
  *
  * For the full copyright and license information, please view the LICENSE
  * file that was distributed with this source code.
  */
 
-namespace dektrium\user\traits;
+namespace primaria\user\traits;
 
-use dektrium\user\events\AuthEvent;
-use dektrium\user\events\ConnectEvent;
-use dektrium\user\events\FormEvent;
-use dektrium\user\events\ProfileEvent;
-use dektrium\user\events\ResetPasswordEvent;
-use dektrium\user\events\UserEvent;
-use dektrium\user\models\Account;
-use dektrium\user\models\Profile;
-use dektrium\user\models\RecoveryForm;
-use dektrium\user\models\Token;
-use dektrium\user\models\User;
+use primaria\user\events\AuthEvent;
+use primaria\user\events\ConnectEvent;
+use primaria\user\events\FormEvent;
+use primaria\user\events\ProfileEvent;
+use primaria\user\events\ResetPasswordEvent;
+use primaria\user\events\UserEvent;
+use primaria\user\models\Account;
+use primaria\user\models\Profile;
+use primaria\user\models\RecoveryForm;
+use primaria\user\models\Token;
+use primaria\user\models\User;
 use yii\authclient\ClientInterface;
 use yii\base\Model;
 
