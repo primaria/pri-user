@@ -31,16 +31,6 @@ class Bootstrap implements BootstrapInterface
         'User'              => 'abenavid\user\models\User',
         'UserQuery'         => 'abenavid\user\models\UserQuery',
         'SignupForm'        => 'abenavid\user\models\SignupForm',
-
-        /* 'Account'          => 'abenavid\user\models\Account',
-        'Profile'          => 'abenavid\user\models\Profile',
-        'Token'            => 'abenavid\user\models\Token',
-        'RegistrationForm' => 'abenavid\user\models\RegistrationForm',
-        'ResendForm'       => 'abenavid\user\models\ResendForm',
-        'LoginForm'        => 'abenavid\user\models\LoginForm',
-        'SettingsForm'     => 'abenavid\user\models\SettingsForm',
-        'RecoveryForm'     => 'abenavid\user\models\RecoveryForm',
-        'UserSearch'       => 'abenavid\user\models\UserSearch', */
     ];
 
     /** @inheritdoc */
