@@ -31,12 +31,16 @@ class Bootstrap implements BootstrapInterface
         'User'              => 'primaria\user\models\User',
         'UserQuery'         => 'primaria\user\models\UserQuery',
         'SignupForm'        => 'primaria\user\models\SignupForm',
+        'Profile'           => 'primaria\user\models\Profile',
+        'Token'             => 'primaria\user\models\Token',
+        'LoginForm'         => 'primaria\user\models\LoginForm',
+        'Account'           => 'primaria\user\models\Account',
 
-        /* 'Account'          => 'abenavid\user\models\Account',
-        'Profile'          => 'abenavid\user\models\Profile',
-        'Token'            => 'abenavid\user\models\Token',
+        /*
+
+
         'ResendForm'       => 'abenavid\user\models\ResendForm',
-        'LoginForm'        => 'abenavid\user\models\LoginForm',
+
         'SettingsForm'     => 'abenavid\user\models\SettingsForm',
         'RecoveryForm'     => 'abenavid\user\models\RecoveryForm',
         'UserSearch'       => 'abenavid\user\models\UserSearch', */
