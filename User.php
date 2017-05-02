@@ -1,15 +1,6 @@
 <?php
 namespace primaria\user;
 
-/*
- * This file is part of the Primaria user.
- *
- * (c) Primaria project <http://github.com/primaria/>
- *
- * For the full copyright and license information, please view the LICENSE
- * file that was distributed with this source code.
- */
-
 
 
 
@@ -20,7 +11,7 @@ use yii\base\Module as BaseModule;
  */
 class User extends BaseModule
 {
-    const VERSION = '0.1.0';
+    protected $version = "0.1.0";
 
     /** Email is changed right after user enter's new email address. */
     const STRATEGY_INSECURE = 0;
@@ -86,12 +77,6 @@ class User extends BaseModule
      */
 
     /**
-     * @var bool Is the user module in DEBUG mode? Will be set to false automatically
-     * if the application leaves DEBUG mode.
-     */
-    public $debug = TRUE;
-
-    /**
      * Get module version
      * @return string
      */
@@ -102,15 +87,9 @@ class User extends BaseModule
 
     public $urlPrefix = 'user';
 
+
     /** @var array The rules to be used in URL management. */
     public $urlRules = [
-//         '<id:\d+>'                               => 'profile/show',
-//         '<action:(login|logout)>'                => 'manager/<action>',
-//         '<action:(register|resend)>'             => 'registration/<action>',
-//         'confirm/<id:\d+>/<code:[A-Za-z0-9_-]+>' => 'registration/confirm',
-//         'forgot'                                 => 'recovery/request',
-//         'recover/<id:\d+>/<code:[A-Za-z0-9_-]+>' => 'recovery/reset',
-//         'settings/<action:\w+>'                  => 'settings/<action>'
     ];
 
 }
