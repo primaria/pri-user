@@ -89,7 +89,7 @@ class User extends BaseModule
      * @var bool Is the user module in DEBUG mode? Will be set to false automatically
      * if the application leaves DEBUG mode.
      */
-    public $debug = false;
+    public $debug = TRUE;
 
     /**
      * Get module version
@@ -105,7 +105,7 @@ class User extends BaseModule
     /** @var array The rules to be used in URL management. */
     public $urlRules = [
 //         '<id:\d+>'                               => 'profile/show',
-         '<action:(login|logout)>'                => 'security/<action>',
+         '<action:(login|logout)>'                => 'login/<action>',
 //         '<action:(register|resend)>'             => 'registration/<action>',
 //         'confirm/<id:\d+>/<code:[A-Za-z0-9_-]+>' => 'registration/confirm',
 //         'forgot'                                 => 'recovery/request',
