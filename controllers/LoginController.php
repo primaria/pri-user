@@ -15,9 +15,9 @@ use primaria\user\Finder;
 use primaria\user\models\Account;
 use primaria\user\models\LoginForm;
 use primaria\user\models\User;
-//use primaria\user\User;
-//use primaria\user\traits\AjaxValidationTrait;
-//use primaria\user\traits\EventTrait;
+use primaria\user\User;
+use primaria\user\traits\AjaxValidationTrait;
+use primaria\user\traits\EventTrait;
 use yii\authclient\AuthAction;
 use yii\authclient\ClientInterface;
 use yii\filters\AccessControl;
@@ -35,8 +35,8 @@ use yii\web\Response;
  */
 class LoginController extends Controller
 {
-    //use AjaxValidationTrait;
-    //use EventTrait;
+    use AjaxValidationTrait;
+    use EventTrait;
 
     /**
      * Event is triggered before logging user in.
