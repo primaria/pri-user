@@ -86,6 +86,12 @@ class User extends BaseModule
      */
 
     /**
+     * @var bool Is the user module in DEBUG mode? Will be set to false automatically
+     * if the application leaves DEBUG mode.
+     */
+    public $debug = false;
+
+    /**
      * Get module version
      * @return string
      */
