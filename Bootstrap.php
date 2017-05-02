@@ -9,7 +9,7 @@
  * file that was distributed with this source code.
  */
 
-namespace abenavid\user;
+namespace primaria\user;
 
 use Yii;
 use yii\authclient\Collection;
@@ -28,9 +28,9 @@ class Bootstrap implements BootstrapInterface
     /** @var array Model's map */
     /** @var Mapa de agreglos del modelo */
     private $_modelMap = [
-        'User'              => 'abenavid\user\models\User',
-        'UserQuery'         => 'abenavid\user\models\UserQuery',
-        'SignupForm'        => 'abenavid\user\models\SignupForm',
+        'User'              => 'primaria\user\models\User',
+        'UserQuery'         => 'primaria\user\models\UserQuery',
+        'SignupForm'        => 'primaria\user\models\SignupForm',
     ];
 
     /** @inheritdoc */
@@ -60,7 +60,7 @@ class Bootstrap implements BootstrapInterface
 
             Yii::$container->set('yii\web\User', [
                 'enableAutoLogin' => true,
-                'loginUrl'        => ['/user/default/login'],
+                'loginUrl'        => ['/user/manager/login'],
                 'identityClass'   => $module->modelMap['User'],
             ]);
 
@@ -68,7 +68,7 @@ class Bootstrap implements BootstrapInterface
                 $app->get('i18n')->translations['user*'] = [
                     'class'    => PhpMessageSource::className(),
                     'basePath' => __DIR__ . '/messages',
-                    'sourceLanguage' => 'en-US'
+                    'sourceLanguage' => 'es'
                 ];
             }
 
