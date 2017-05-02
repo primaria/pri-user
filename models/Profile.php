@@ -32,7 +32,7 @@ use yii\db\ActiveRecord;
  */
 class Profile extends ActiveRecord
 {
-    use ModuleTrait;
+    //use ModuleTrait;
     /** @var \primaria\user\Module */
     protected $module;
 
