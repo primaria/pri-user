@@ -9,7 +9,7 @@
  * file that was distributed with this source code.
  */
 
-namespace dektrium\user\migrations;
+namespace primaria\user\migrations;
 
 use Yii;
 
@@ -25,7 +25,7 @@ class Migration extends \yii\db\Migration
     protected $restrict = 'RESTRICT';
     protected $cascade = 'CASCADE';
     protected $dbType;
-    
+
 
     /**
      * @inheritdoc
@@ -54,19 +54,19 @@ class Migration extends \yii\db\Migration
                 throw new \RuntimeException('Your database is not supported!');
         }
     }
-    
+
     public function dropColumnConstraints($table, $column)
     {
         $table = Yii::$app->db->schema->getRawTableName($table);
         $cmd = Yii::$app->db->createCommand('SELECT name FROM sys.default_constraints
                                 WHERE parent_object_id = object_id(:table)
                                 AND type = \'D\' AND parent_column_id = (
-                                    SELECT column_id 
-                                    FROM sys.columns 
+                                    SELECT column_id
+                                    FROM sys.columns
                                     WHERE object_id = object_id(:table)
                                     and name = :column
                                 )', [ ':table' => $table, ':column' => $column ]);
-                                
+
         $constraints = $cmd->queryAll();
         foreach ($constraints as $c) {
             $this->execute('ALTER TABLE '.Yii::$app->db->quoteTableName($table).' DROP CONSTRAINT '.Yii::$app->db->quoteColumnName($c['name']));
