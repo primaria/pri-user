@@ -8,7 +8,7 @@ use abenavid\user\models\User;
 /**
  * Password reset request form
  */
-class PasswordResetRequestForm extends Model
+class recoveryForm extends Model
 {
     public $email;
 
