@@ -11,8 +11,7 @@ use yii\filters\VerbFilter;
 use yii\filters\AccessControl;
 use yii\widgets\ActiveForm;
 use primaria\user\models\LoginForm;
-use primaria\user\models\SignupForm;
-use primaria\user\models\PasswordResetRequestForm;
+
 
 
 
@@ -24,7 +23,7 @@ class ManagerController extends Controller
 {
 
     /**
-     * @var abenavid\user\User
+     * @var primaria\user\User
      * @inheritdoc
      */
     public $module;
@@ -113,32 +112,7 @@ class ManagerController extends Controller
         return $this->goHome();
     }
 
-    /**
-     * actionSignup: Accion del controlador DefaultController para el registro de nuevos usuarios.
-     *
-     * @return mixed
-     */
-    public function actionSignup()
-    {
-         $model = new SignupForm();
 
-
-
-
-       if ($model->load(Yii::$app->request->post())) {
-            if ($user = $model->signup()) {
-                if (Yii::$app->getUser()->login($user)) {
-                    return $this->goHome();
-                }
-            }
-        }
-
-        return $this->render('signup', [
-            'model' => $model,
-        ]);
-
-       // return $this->render('signup');
-    }
 
 
     /**
