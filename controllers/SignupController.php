@@ -36,17 +36,4 @@ class SignupController extends Controller
 
         // return $this->render('signup');
     }
-
-    /**
-     * Logs out the current user.
-     *
-     * @return mixed
-     */
-    public function actionLogout()
-    {
-        Yii::$app->user->logout();
-
-        return $this->goHome();
-    }
-
 }
