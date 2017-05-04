@@ -4,6 +4,7 @@ namespace primaria\user\controllers;
 
 
 use primaria\user\models\SignupForm;
+use primaria\user\models\User;
 use yii;
 use yii\web\Controller;
 use yii\web\Response;
