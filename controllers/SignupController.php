@@ -4,6 +4,7 @@ namespace primaria\user\controllers;
 
 
 use primaria\user\models\SignupForm;
+use yii;
 use yii\web\Controller;
 use yii\web\Response;
 
@@ -19,9 +20,6 @@ class SignupController extends Controller
     public function actionSignup()
     {
         $model = new SignupForm();
-
-
-
 
         if ($model->load(Yii::$app->request->post())) {
             if ($user = $model->signup()) {
