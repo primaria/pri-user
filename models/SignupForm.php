@@ -1,6 +1,7 @@
 <?php
 namespace primaria\user\models;
 
+use yii;
 use yii\base\Model;
 use primaria\user\models\User;
 
@@ -52,7 +53,9 @@ public function signup()
             return null;
         }
 
-        $user = new User();
+        /** @var User $user */
+        $user = Yii::createObject(User::className());
+        //$user = new User();
         $user->username = $this->username;
         $user->email = $this->email;
         $user->setPassword($this->password);
