@@ -26,7 +26,7 @@ class RecoveryController extends Controller
             }
         }
 
-        return $this->render('requestPasswordResetToken', [
+        return $this->render('requestPassword', [
             'model' => $model,
         ]);
     }
