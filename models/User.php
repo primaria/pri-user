@@ -1,5 +1,5 @@
 <?php
-namespace abenavid\user\models;
+namespace primaria\user\models;
 
 use Yii;
 use yii\base\NotSupportedException;
