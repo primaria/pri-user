@@ -13,15 +13,18 @@ use phpDocumentor\Reflection\Types\This;
  * User model
  *
  * @property integer $id
- * @property string $username
- * @property string $password_hash
- * @property string $password_reset_token
- * @property string $email
- * @property string $auth_key
- * @property integer $status
+ * @property string  $username
+ * @property string  $email
+ * @property string  $unconfirmed_email
+ * @property string  $password_hash
+ * @property string  $auth_key
+ * @property string  $registration_ip
+ * @property integer $confirmed_at
+ * @property integer $blocked_at
  * @property integer $created_at
  * @property integer $updated_at
- * @property string $password write-only password
+ * @property integer $last_login
+ * @property integer $flags
  */
 class User extends ActiveRecord implements IdentityInterface
 {
