@@ -51,26 +51,6 @@ class ManagerController extends Controller
         ];
     }
 
-
-
-    /**
-     * Renders the index view for the module
-     * @return string
-     */
-    public function actionIndex()
-    {
-
-
-
-       if (!Yii::$app->user->isGuest) {
-            return $this->redirect(["/user/login/login"]);
-        } else {
-            return $this->redirect(["/user/login/signup"]);
-        }
-
-        //return $this->render('index');
-    }
-
     /**
      * Logs in a user.
      *
