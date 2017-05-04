@@ -10,7 +10,7 @@ use yii\web\Controller;
 use yii\web\Response;
 
 
-class SignupController extends Controller
+class RegisterController extends Controller
 {
 
     /**
@@ -18,7 +18,7 @@ class SignupController extends Controller
      *
      * @return mixed
      */
-    public function actionSignup()
+    public function actionRegister()
     {
         $model = new SignupForm();
 
