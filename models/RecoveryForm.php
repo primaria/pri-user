@@ -8,7 +8,7 @@ use primaria\user\models\User;
 /**
  * Password reset request form
  */
-class recoveryForm extends Model
+class RecoveryForm extends Model
 {
     public $email;
 
