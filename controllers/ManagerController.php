@@ -117,7 +117,8 @@ class ManagerController extends Controller
      *
      * @return mixed
      */
-    public function actionSignup()
+
+   /* public function actionSignup()
     {
          $model = new SignupForm();
 
@@ -137,7 +138,7 @@ class ManagerController extends Controller
         ]);
 
        // return $this->render('signup');
-    }
+    }*/
 
 
     /**
