@@ -46,7 +46,7 @@ class Bootstrap implements BootstrapInterface
             $this->_modelMap = array_merge($this->_modelMap, $module->modelMap);
 
             foreach ($this->_modelMap as $name => $definition) {
-                $class = "abenavid\\user\\models\\" . $name;
+                $class = "primaria\\user\\models\\" . $name;
                 Yii::$container->set($class, $definition);
                 $modelName = is_array($definition) ? $definition['class'] : $definition;
                 $module->modelMap[$name] = $modelName;
