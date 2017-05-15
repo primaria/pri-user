@@ -68,6 +68,7 @@ class ManagerController extends Controller
         } else {
             return $this->render('login', [
                 'model' => $model,
+                'module' => $this->module,
             ]);
         }
     }
