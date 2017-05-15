@@ -62,15 +62,16 @@ class ManagerController extends Controller
             return $this->goHome();
         }
 
-        $model = new LoginForm();
+        $model = \Yii::createObject(LoginForm::className());
         if ($model->load(Yii::$app->request->post()) && $model->login()) {
             return $this->goBack();
-        } else {
-            return $this->render('login', [
-                'model' => $model,
-                'module' => $this->module,
-            ]);
         }
+
+        return $this->render('login', [
+            'model' => $model,
+            'module' => $this->module,
+        ]);
+
     }
 
     /**
