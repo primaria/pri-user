@@ -1,17 +1,14 @@
 <?php
 
-/* @var $this yii\web\View */
-/* @var $form yii\bootstrap\ActiveForm */
-/* @var $model \primaria\user\models\LoginForm */
 
 use yii\helpers\Html;
 use yii\bootstrap\ActiveForm;
 use primaria\user\User;
 
 /**
- * @var yii\web\View $this
- * @var primaria\user\models\LoginForm $model
- * @var primaria\user\User $module
+ * @var $this yii\web\View
+ * @var $model primaria\user\models\LoginForm
+ * @var $module primaria\user\User
  */
 
 $this->title = 'Login';
