@@ -3,6 +3,7 @@ namespace primaria\user\models;
 
 use Yii;
 use yii\base\Model;
+use primaria\user\User;
 
 /**
  * Login form
@@ -11,9 +12,9 @@ class LoginForm extends Model
 {
     public $username;
     public $password;
-    public $rememberMe = true;
+    public $rememberMe = false;
 
-    private $_user;
+    private $_user = FALSE;
 
 
     /**
@@ -28,6 +29,16 @@ class LoginForm extends Model
             ['rememberMe', 'boolean'],
             // password is validated by validatePassword()
             ['password', 'validatePassword'],
+        ];
+    }
+
+
+    public function attributeLabels()
+    {
+        return [
+            'username'   => User::t('user', 'Username'),
+            'password'   => User::t('front', 'Password'),
+            'rememberMe' => User::t('front', 'Remember me'),
         ];
     }
 
