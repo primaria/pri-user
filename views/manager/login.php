@@ -6,6 +6,13 @@
 
 use yii\helpers\Html;
 use yii\bootstrap\ActiveForm;
+use primaria\user\User;
+
+/**
+ * @var yii\web\View $this
+ * @var primaria\user\models\LoginForm $model
+ * @var primaria\user\User $module
+ */
 
 $this->title = 'Login';
 $this->params['breadcrumbs'][] = $this->title;
