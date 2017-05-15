@@ -25,7 +25,9 @@ class User extends BaseModule
     /** @var bool Whether to show flash messages. */
     public $enableFlashMessages = true;
 
-    /** @var bool Whether to enable registration. */
+    /** @var bool Enable the option to register.
+     * True, displays the option to register at the login
+     * false, oculta opcion de registrarse en el inicio de sesion*/
     public $enableRegistration = true;
 
     /** @var bool Whether to remove password field from registration form. */

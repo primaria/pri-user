@@ -38,6 +38,11 @@ $this->params['breadcrumbs'][] = $this->title;
                 <?php ActiveForm::end(); ?>
             </div>
         </div>
+        <?php if ($module->enableRegistration): ?>
+            <p class="text-center">
+                <?= Html::a(Yii::t('user', 'Don\'t have an account? Sign up!'), ['/user/registration/register']) ?>
+            </p>
+        <?php endif ?>
     </div>
 </div>
 
