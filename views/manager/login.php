@@ -31,7 +31,7 @@ $this->params['breadcrumbs'][] = $this->title;
                 <?= $form->field($model, 'rememberMe')->checkbox(['tabindex' => '3']) ?>
 
                 <div style="color:#999;margin:1em 0">
-                    If you forgot your password you can <?= Html::a('reset it', ['/user/recovery/request-password']) ?>.
+                    <?= Html::a(\yii::t('user','Reset your password'), ['/user/recovery/request-password']) ?>.
                 </div>
 
                 <div class="form-group">

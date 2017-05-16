@@ -144,7 +144,7 @@ return [
     'Registration ip' => 'IP de registro',
     'Registration IP' => 'Registro de IP',
     'Registration time' => 'Fecha de registro',
-    'Remember me next time' => 'Recuerdame la próxima vez',
+    'Remember me' => 'Recordarme',
     'Request new confirmation message' => 'Solicitar un nuevo mensaje de confirmación',
     'Reset your password' => 'Restablecer la contraseña',
     'Role' => '@@Rol@@',
