@@ -11,7 +11,7 @@ use primaria\user\User;
  * @var $module primaria\user\User
  */
 
-$this->title = 'Login';
+$this->title = yii::t('user','Login') ;
 $this->params['breadcrumbs'][] = $this->title;
 ?>
 

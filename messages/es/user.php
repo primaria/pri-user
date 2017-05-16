@@ -107,7 +107,7 @@ return [
     'Joined on {0, date}' => 'Registrado el {0, date}',
     'Last login at {0, date, MMMM dd, YYYY HH:mm} from {1}' => '@@Último inicio de sesión {0, date, dd MMMM, YYYY HH:mm} desde {1}@@',
     'Location' => 'Localización',
-    'Login' => 'Usuario',
+    'Login' => 'Inicio de Sesión',
     'Logout' => 'Cerrar sesión',
     'Looks like this is first time you are using {0} account to sign in to {1}' => '@@Parece que es la primera vez que usas la cuenta {0} para iniciar sesión en {1}@@',
     'Manage users' => 'Administrar usuarios',
