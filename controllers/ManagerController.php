@@ -72,7 +72,11 @@ class ManagerController extends Controller
             \Yii::$app->end();
         }
 
+        // aqui puedes ejecutar acciones antes del login
+
         if ($model->load(Yii::$app->request->post()) && $model->login()) {
+
+            // aqui puedes ejecutar acciones despues del login
             return $this->goBack();
         }
 
