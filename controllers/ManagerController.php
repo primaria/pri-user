@@ -62,7 +62,16 @@ class ManagerController extends Controller
             return $this->goHome();
         }
 
+        // se instancia el modelo LoginForm
         $model = \Yii::createObject(LoginForm::className());
+
+        if (\Yii::$app->request->isAjax && $model->load(\Yii::$app->request->post())) {
+            \Yii::$app->response->format = Response::FORMAT_JSON;
+            \Yii::$app->response->data   = ActiveForm::validate($model);
+            \Yii::$app->response->send();
+            \Yii::$app->end();
+        }
+
         if ($model->load(Yii::$app->request->post()) && $model->login()) {
             return $this->goBack();
         }
