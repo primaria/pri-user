@@ -45,20 +45,15 @@ class LoginForm extends Model
     }
 
     /**
-     * Validates the password.
-     * This method serves as the inline validation for password.
+     * Validates if the hash of the given password is identical to the saved hash in the database.
+     * It will always succeed if the module is in DEBUG mode.
      *
-     * @param string $attribute the attribute currently being validated
-     * @param array $params the additional name-value pairs given in the rule
+     * @return void
      */
     public function validatePassword($attribute, $params)
     {
-        if (!$this->hasErrors()) {
-            $user = $this->getUser();
-            if (!$user || !$user->validatePassword($this->password)) {
-                $this->addError($attribute, 'Incorrect username or password.');
-            }
-        }
+      if ($this->user === null || !Password::validate($this->password, $this->user->password_hash))
+        $this->addError($attribute, Yii::t('user', 'Invalid login or password'));
     }
 
     /**
