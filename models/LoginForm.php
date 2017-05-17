@@ -4,6 +4,7 @@ namespace primaria\user\models;
 use Yii;
 use yii\base\Model;
 use primaria\user\User;
+use primaria\user\traits\ModuleTrait;
 
 /**
  * Login form
@@ -14,7 +15,7 @@ class LoginForm extends Model
     public $password;
     public $rememberMe = false;
 
-    private $_user = FALSE;
+    private $_user;
 
 
     /**
@@ -68,7 +69,10 @@ class LoginForm extends Model
     {
 
         if ($this->validate()) {
-            return Yii::$app->user->logins($this->getUser(), $this->rememberMe ? 3600 * 24 * 30 : 0);
+
+            return Yii::$app->user->login($this->getUser(), $this->rememberMe ? $this->module->rememberTime : 0);
+
+            //return Yii::$app->user->logins($this->getUser(), $this->rememberMe ? 3600 * 24 * 30 : 0);
 
         } else {
             return false;
@@ -82,7 +86,7 @@ class LoginForm extends Model
      */
     protected function getUser()
     {
-        if ($this->_user === null) {
+        if ($this->_user == null) {
             $this->_user = User::findByUsername($this->username);
         }
 

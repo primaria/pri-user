@@ -63,6 +63,7 @@ class ManagerController extends Controller
         }
 
         // se instancia el modelo LoginForm
+        /** @var LoginForm $model */
         $model = \Yii::createObject(LoginForm::className());
 
         if (\Yii::$app->request->isAjax && $model->load(\Yii::$app->request->post())) {

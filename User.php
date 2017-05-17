@@ -20,6 +20,9 @@ class User extends BaseModule
      * false, oculta la opcion de registro*/
     public $enableRegistration = true;
 
+    /** @var int Tiempo que el usuario sea recordado sin pedir credenciales */
+    public $rememberTime = 1209600; // two weeks
+
 
     /** @var array An array of administrator's usernames. */
     public $admins = [];
