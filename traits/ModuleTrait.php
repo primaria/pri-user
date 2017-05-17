@@ -8,7 +8,7 @@ use primaria\user\User;
 /**
  * Trait ModuleTrait
  * @property-read Module $module
- * @package dektrium\user\traits
+ * @package primaria\user\traits
  */
 trait ModuleTrait
 {
