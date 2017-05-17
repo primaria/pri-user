@@ -68,9 +68,7 @@ class ManagerController extends Controller
 
         if (\Yii::$app->request->isAjax && $model->load(\Yii::$app->request->post())) {
             \Yii::$app->response->format = Response::FORMAT_JSON;
-            \Yii::$app->response->data   = ActiveForm::validate($model);
-            \Yii::$app->response->send();
-            \Yii::$app->end();
+            return ActiveForm::validate($model);
         }
 
         // aqui puedes ejecutar acciones antes del login

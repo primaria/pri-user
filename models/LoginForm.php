@@ -3,26 +3,30 @@ namespace primaria\user\models;
 
 use Yii;
 use yii\base\Model;
-use primaria\user\User;
-use primaria\user\traits\ModuleTrait;
+use primaria\user\models\User;
+
 
 /**
  * Login form
  */
 class LoginForm extends Model
 {
+
+    /** @var string User's email or username */
     public $username;
+
+    /** @var string User's plain password */
     public $password;
+
+    /** @var string Whether to remember the user */
     public $rememberMe = false;
 
-    /** @var \primaria\user\models\User */
-    protected $user;
 
-    private $_user;
+    private $_user = false;
 
 
     /**
-     * @inheritdoc
+     * @return array the validation rules.
      */
     public function rules()
     {
@@ -36,46 +40,46 @@ class LoginForm extends Model
         ];
     }
 
-
-    public function attributeLabels()
-    {
-        return [
-            'username'   => Yii::t('user', 'Username'),
-            'password'   => Yii::t('user', 'Password'),
-            'rememberMe' => Yii::t('user', 'Remember me'),
-        ];
-    }
-
     /**
-     * Validates if the hash of the given password is identical to the saved hash in the database.
-     * It will always succeed if the module is in DEBUG mode.
+     * Validates the password.
+     * This method serves as the inline validation for password.
      *
-     * @return void
+     * @param string $attribute the attribute currently being validated
+     * @param array $params the additional name-value pairs given in the rule
      */
     public function validatePassword($attribute, $params)
     {
-      if ($this->user === null || !Password::validate($this->password, $this->user->password_hash))
-        $this->addError($attribute, Yii::t('user', 'Invalid login or password'));
-    }
+        if (!$this->hasErrors()) {
+            $user = $this->getUser();
 
-    /**
-     * Logs in a user using the provided username and password.
-     *
-     * @return bool whether the user is logged in successfully
-     */
-    public function login()
-    {
-
-        if ($this->validate()) {
-
-            return Yii::$app->user->login($this->getUser(), $this->rememberMe ? $this->module->rememberTime : 0);
-
-            //return Yii::$app->user->logins($this->getUser(), $this->rememberMe ? 3600 * 24 * 30 : 0);
-
-        } else {
-            return false;
+            if (!$user || !$user->validatePassword($this->password)) {
+                $this->addError($attribute, 'Incorrect username or password.');
+            }
         }
     }
 
+    public function login()
+    {
+        if ($this->validate()) {
+            //$this->user->updateAttributes(['$last_login' => time()]);
+            return Yii::$app->user->login($this->getUser(), $this->rememberMe ? 300000: 0);
+        }
+        return false;
+    }
+
+    /**
+     * Finds user by [[username]]
+     *
+     * @return User|null
+     */
+    public function getUser()
+    {
+        if ( $this->_user === false )
+        {
+            $this->_user = User::findByUsername($this->username);
+        }
+
+        return $this->_user;
+    }
 
 }
