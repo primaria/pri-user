@@ -38,8 +38,8 @@ class ManagerController extends Controller
                 'class' => AccessControl::className(),
                 'only' => ['logout', 'signup'],
                 'rules' => [
-                    ['allow' => true, 'actions' => ['signup'], 'roles' => ['?']],
-                    ['allow' => true, 'actions' => ['logout'], 'roles' => ['@']],
+                    ['allow' => true, 'actions' => ['login', 'auth'], 'roles' => ['?']],
+                    ['allow' => true, 'actions' => ['login', 'auth', 'logout'], 'roles' => ['@']],
                 ],
             ],
             'verbs' => [
@@ -47,6 +47,21 @@ class ManagerController extends Controller
                 'actions' => [
                     'logout' => ['post'],
                 ],
+            ],
+        ];
+    }
+
+    /** @inheritdoc */
+    public function actions()
+    {
+        return [
+            'auth' => [
+                'class' => AuthAction::className(),
+                // if user is not logged in, will try to log him in, otherwise
+                // will try to connect social account to user.
+                'successCallback' => \Yii::$app->user->isGuest
+                ? [$this, 'authenticate']
+                : [$this, 'connect'],
             ],
         ];
     }
