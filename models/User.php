@@ -10,7 +10,7 @@ use phpDocumentor\Reflection\Types\This;
 
 
 /**
- * User model
+ * Modelo principal de la tabla [user]
  *
  * @property integer $id
  * @property string  $username

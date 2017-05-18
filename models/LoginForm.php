@@ -23,28 +23,44 @@ class LoginForm extends Model
     /** @var string Whether to remember the user */
     public $rememberMe = false;
 
-
+    /**
+     * Esta variable Registra si ya ingraso antes el usuario
+     *
+     * @var boolen
+     */
     private $_user = false;
+
+    /** @inheritdoc */
+    public function attributeLabels()
+    {
+        return [
+            'username'   => \Yii::t('user', 'Username'),
+            'password'   => \Yii::t('user', 'Password'),
+            'rememberMe' => \Yii::t('user', 'Remember me'),
+        ];
+    }
 
 
     /**
+     * Establece las reglas de validacion para el formulario login
+     *
      * @return array the validation rules.
      */
     public function rules()
     {
         return [
-            // username and password are both required
+            // username y password son requeridos
             [['username', 'password'], 'required'],
-            // rememberMe must be a boolean value
+            // rememberMe debe ser un valor booleano
             ['rememberMe', 'boolean'],
-            // password is validated by validatePassword()
+            // El password es validado por el metodo validatePassword()
             ['password', 'validatePassword'],
         ];
     }
 
     /**
-     * Validates the password.
-     * This method serves as the inline validation for password.
+     * Validación del password.
+     * Este método sirve como validación en de la contraseña.
      *
      * @param string $attribute the attribute currently being validated
      * @param array $params the additional name-value pairs given in the rule
@@ -60,6 +76,11 @@ class LoginForm extends Model
         }
     }
 
+    /**
+     * Este metodo valida el [username] ingrasado en la BD y asigna un tiempo de conexion
+     *
+     * @return unknown|boolean
+     */
     public function login()
     {
         if ($this->validate()) {
@@ -70,7 +91,7 @@ class LoginForm extends Model
     }
 
     /**
-     * Finds user by [[username]]
+     * Busca usuario por [[username]]
      *
      * @return User|null
      */
