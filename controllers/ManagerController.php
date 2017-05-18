@@ -10,6 +10,7 @@ use yii\web\Response;
 use yii\filters\VerbFilter;
 use yii\filters\AccessControl;
 use yii\widgets\ActiveForm;
+use yii\authclient\AuthAction;
 use primaria\user\models\LoginForm;
 
 
@@ -39,7 +40,7 @@ class ManagerController extends Controller
                 'only' => ['logout', 'signup'],
                 'rules' => [
                     ['allow' => true, 'actions' => ['login', 'auth'], 'roles' => ['?']],
-                    ['allow' => true, 'actions' => ['login', 'auth', 'logout'], 'roles' => ['@']],
+                    ['allow' => true, 'actions' => ['login', 'auth' , 'logout'], 'roles' => ['@']],
                 ],
             ],
             'verbs' => [
