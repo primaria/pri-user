@@ -12,6 +12,8 @@ use primaria\user\models\User;
 class LoginForm extends Model
 {
 
+
+
     /** @var string User's email or username */
     public $username;
 
@@ -62,7 +64,7 @@ class LoginForm extends Model
     {
         if ($this->validate()) {
             //$this->user->updateAttributes(['$last_login' => time()]);
-            return Yii::$app->user->login($this->getUser(), $this->rememberMe ? $this->module->rememberTime : 0);
+            return Yii::$app->user->login($this->getUser(), $this->rememberMe ? 3000 : 0);
         }
         return false;
     }
