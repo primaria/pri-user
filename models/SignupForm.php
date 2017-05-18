@@ -13,7 +13,7 @@ use primaria\user\models\User;
  * @property string $email
  * @property string $password
  */
-class SignupFormm extends Model
+class SignupForm extends Model
 {
     public $username;
     public $email;
