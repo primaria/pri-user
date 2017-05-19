@@ -20,13 +20,25 @@ use primaria\user\User;
 class RecoveryController extends Controller
 {
 
+    /** @inheritdoc */
+    public function behaviors()
+    {
+        return [
+            'access' => [
+                'class' => AccessControl::className(),
+                'rules' => [
+                    ['allow' => true, 'actions' => ['request', 'reset'], 'roles' => ['?']],
+                ],
+            ],
+        ];
+    }
 
     /**
      * Requests password reset.
      *
      * @return mixed
      */
-    public function actionRequestPassword()
+    public function actionRequest()
     {
         //$this->module->enablePasswordRecovery
         if (!$this->module->enablePasswordRecovery) {
