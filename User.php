@@ -23,7 +23,7 @@ class User extends BaseModule
     /** @var bool Activa la recuperacion de la password
      * True, autoriza la recuperacion de la password
      * false, no autoriza la recuperacion de la password */
-    public $enablePasswordRecovery = FALSE;
+    public $enablePasswordRecovery = TRUE;
 
     /** @var int Tiempo que el usuario sea recordado sin pedir credenciales */
     public $rememberTime = 1209600; // two weeks
