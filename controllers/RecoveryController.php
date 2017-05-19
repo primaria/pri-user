@@ -2,12 +2,25 @@
 
 namespace primaria\user\controllers;
 
-use yii;
-use yii\web\Controller;
-use primaria\user\models\RecoveryForm;
 
+use yii\web\Controller;
+use yii\web\NotFoundHttpException;
+
+use yii\filters\AccessControl;
+use primaria\user\models\RecoveryForm;
+use primaria\user\User;
+
+/**
+ * RecoveryController manages password recovery process.
+ *
+ * @property \primaria\user\User $module
+ *
+ *
+ */
 class RecoveryController extends Controller
 {
+
+
     /**
      * Requests password reset.
      *
@@ -15,7 +28,17 @@ class RecoveryController extends Controller
      */
     public function actionRequestPassword()
     {
-        $model = new RecoveryForm();
+        //$this->module->enablePasswordRecovery
+        if (!$this->module->enablePasswordRecovery) {
+            throw new NotFoundHttpException();
+        }
+
+        /** @var RecoveryForm $model */
+        $model = \Yii::createObject([
+            'class'    => RecoveryForm::className(),
+            //'scenario' => RecoveryForm::SCENARIO_REQUEST,
+        ]);
+
         if ($model->load(Yii::$app->request->post()) && $model->validate()) {
             if ($model->sendEmail()) {
                 Yii::$app->session->setFlash('success', 'Check your email for further instructions.');
