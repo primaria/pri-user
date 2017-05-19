@@ -2,7 +2,7 @@
 
 namespace primaria\user\controllers;
 
-
+use yii;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
 
