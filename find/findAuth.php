@@ -9,7 +9,7 @@
  * file that was distributed with this source code.
  */
 
-namespace primaria\user;
+namespace primaria\user\find;
 
 //use primaria\user\models\query\AccountQuery;
 //use primaria\user\models\Token;
