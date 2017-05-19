@@ -22,7 +22,7 @@ use yii\db\ActiveQuery;
  *
  * @author Dmitry Erofeev <dmeroff@gmail.com>
  */
-class Finder extends Object
+class findAuth extends Object
 {
     /** @var ActiveQuery */
     protected $userQuery;
