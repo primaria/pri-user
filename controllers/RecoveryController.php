@@ -5,7 +5,6 @@ namespace primaria\user\controllers;
 use yii;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
-
 use yii\filters\AccessControl;
 use primaria\user\models\RecoveryForm;
 use primaria\user\User;
