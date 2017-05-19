@@ -4,10 +4,11 @@
 /* @var $form yii\bootstrap\ActiveForm */
 /* @var $model \primaria\user\models\recoveryForm */
 
+use yii;
 use yii\helpers\Html;
 use yii\bootstrap\ActiveForm;
 
-$this->title = 'Request Password';
+$this->title = \yii::t('user','Recover your password');
 $this->params['breadcrumbs'][] = $this->title;
 ?>
 <div class="site-request-password-reset">
