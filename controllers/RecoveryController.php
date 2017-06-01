@@ -1,10 +1,11 @@
 <?php
 namespace primaria\user\models;
 
-use primaria\user\find\findAuth;
+
 use Yii;
 use yii\base\Model;
 use primaria\user\mail\sendMail;
+use primaria\user\find\findAuth;
 
 /**
  * Password reset request form
