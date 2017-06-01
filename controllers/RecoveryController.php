@@ -1,70 +1,123 @@
 <?php
+namespace primaria\user\models;
 
-namespace primaria\user\controllers;
-
-use yii;
-use yii\web\Controller;
-use yii\web\NotFoundHttpException;
-use yii\filters\AccessControl;
-use primaria\user\models\RecoveryForm;
-use primaria\user\User;
-
+use primaria\user\find\findAuth;
+use Yii;
+use yii\base\Model;
+use primaria\user\mail\sendMail;
 
 /**
- * RecoveryController manages password recovery process.
- *
- * @property \primaria\user\User $module
- *
- *
+ * Password reset request form
  */
-class RecoveryController extends Controller
+class RecoveryForm extends Model
 {
+    const SCENARIO_REQUEST = 'request';
+    const SCENARIO_RESET = 'reset';
 
-    /** @inheritdoc */
-    public function behaviors()
+    /**
+     * @var string
+     */
+    public $email;
+
+    /**
+     * @var string
+     */
+    public $password;
+
+
+    /**
+     * @var findAuth
+     */
+    protected $findAuth;
+
+    /**
+     * @var SendMail
+     */
+    protected $sendMail;
+
+    /**
+     * @param SendMail $sendMail
+     * @param findAuth $findAuth
+     * @param array  $config
+     */
+    public function __construct(SendMail $sendMail, findAuth $findAuth, $config = [])
+    {
+        $this->sendMail = $sendMail;
+        $this->findAuth = $findAuth;
+        parent::__construct($config);
+    }
+
+
+    public function attributeLabels()
     {
         return [
-            'access' => [
-                'class' => AccessControl::className(),
-                'rules' => [
-                    ['allow' => true, 'actions' => ['request', 'reset'], 'roles' => ['?']],
-                ],
-            ],
+            'email'    => \Yii::t('user', 'Email'),
+            'password' => \Yii::t('user', 'Password'),
         ];
     }
 
     /**
-     * Requests password reset.
-     *
-     * @return mixed
+     * @inheritdoc
      */
-    public function actionRequest()
+    public function scenarios()
     {
-        //$this->module->enablePasswordRecovery
-        if (!$this->module->enablePasswordRecovery) {
-            throw new NotFoundHttpException();
-        }
-
-        /** @var RecoveryForm $model */
-        $model = \Yii::createObject([
-            'class'    => RecoveryForm::className(),
-            //'scenario' => RecoveryForm::SCENARIO_REQUEST,
-        ]);
-
-        if ($model->load(Yii::$app->request->post()) && $model->validate()) {
-            if ($model->sendEmail()) {
-                Yii::$app->session->setFlash('success', 'Check your email for further instructions.');
-
-                return $this->goHome();
-            } else {
-                Yii::$app->session->setFlash('error', 'Sorry, we are unable to reset password for email provided.');
-            }
-        }
-
-        return $this->render('request', [
-            'model' => $model,
-            //'module' => $this->module,
-        ]);
+        return [
+            self::SCENARIO_REQUEST => ['email'],
+            self::SCENARIO_RESET => ['password'],
+        ];
     }
 
+    /**
+     * @inheritdoc
+     */
+    public function rules()
+    {
+        return [
+            'emailTrim' => ['email', 'filter', 'filter' => 'trim'],
+            'emailRequired' => ['email', 'required'],
+            'emailPattern' => ['email', 'email'],
+            'passwordRequired' => ['password', 'required'],
+            'passwordLength' => ['password', 'string', 'max' => 72, 'min' => 6],
+        ];
+    }
+
+    /**
+     * Sends an email with a link, for resetting the password.
+     *
+     * @return bool whether the email was send
+     */
+    public function sendEmail()
+    {
+
+        if (!$this->validate()) {
+            return false;
+        }
+
+        /* @var $user User */
+
+        $user = $this->findAuth->findUserByEmail($this->email);
+
+
+        if ($user instanceof User) {
+            /** @var Token $token */
+            $token = \Yii::createObject([
+                'class' => Token::className(),
+                'user_id' => $user->id,
+                'type' => Token::TYPE_RECOVERY,
+            ]);
+
+            if (!$token->save(false)) {
+                return false;
+            }
+
+            if (!$this->sendMail->sendRecoveryMessage($user, $token)) {
+                return false;
+            }
+
+
+        }
+
+
+
+    }
 }
