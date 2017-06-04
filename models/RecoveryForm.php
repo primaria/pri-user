@@ -19,6 +19,11 @@ class RecoveryForm extends Model
      */
     public $email;
 
+    /**
+     * @var string
+     */
+    public $password;
+
 
     /**
      * @inheritdoc
