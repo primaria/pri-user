@@ -36,17 +36,6 @@ class RecoveryForm extends Model
      */
     protected $sendMail;
 
-    /**
-     * @param SendMail $sendMail
-     * @param findAuth $findAuth
-     * @param array  $config
-     */
-    public function __construct(SendMail $sendMail, findAuth $findAuth, $config = [])
-    {
-        $this->sendMail = $sendMail;
-        $this->findAuth = $findAuth;
-        parent::__construct($config);
-    }
 
 
     public function attributeLabels()
