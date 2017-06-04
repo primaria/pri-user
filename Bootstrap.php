@@ -31,6 +31,7 @@ class Bootstrap implements BootstrapInterface
         'User'              => 'primaria\user\models\User',
         'UserQuery'         => 'primaria\user\models\UserQuery',
         'SignupForm'        => 'primaria\user\models\SignupForm',
+        'RecoveryForm'      => 'primaria\user\models\RecoveryForm',
     ];
 
     /** @inheritdoc */
