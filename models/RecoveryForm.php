@@ -13,8 +13,39 @@ class RecoveryForm extends Model
     const SCENARIO_REQUEST = 'request';
     const SCENARIO_RESET = 'reset';
 
+    /**
+     * @var string
+     */
     public $email;
 
+    /**
+     * @var string
+     */
+    public $password;
+
+
+
+    /**
+     * @inheritdoc
+     */
+    public function attributeLabels()
+    {
+        return [
+            'email'    => \Yii::t('user', 'Email'),
+            'password' => \Yii::t('user', 'Password'),
+        ];
+    }
+
+    /**
+     * @inheritdoc
+     */
+    public function scenarios()
+    {
+        return [
+            self::SCENARIO_REQUEST => ['email'],
+            self::SCENARIO_RESET => ['password'],
+        ];
+    }
 
     /**
      * @inheritdoc
