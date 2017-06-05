@@ -3,10 +3,11 @@
 namespace primaria\user\controllers;
 
 use primaria\user\models\RecoveryForm;
-use yii\filters\AccessControl;
+
+use yii;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
-
+use yii\filters\AccessControl;
 
 
 /**
