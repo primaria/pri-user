@@ -24,6 +24,22 @@ class RecoveryForm extends Model
      */
     public $password;
 
+    /**
+     * @var findAuth
+     */
+    protected $findAuth;
+
+    /**
+     * @param Finder $finder
+     * @param array  $config
+     */
+    public function __construct(findAuth $findAuth, $config = [])
+    {
+        //$this->mailer = $mailer;
+        $this->findAuth= $findAuth;
+        parent::__construct($config);
+    }
+
 
 
     /**
@@ -80,7 +96,8 @@ class RecoveryForm extends Model
 
 
         /* @var $user User */
-        $user = findAuth::findUserByEmail($this->email);
+        $user = $this->findAuth->findUserByEmail($this->email);
+        //$user = findAuth::findUserByEmail($this->email);
 
         if (!$user) {
             return false;

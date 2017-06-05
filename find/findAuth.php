@@ -37,12 +37,6 @@ class findAuth extends Object
     protected $profileQuery;
 
 
-    public function __construct($config = [])
-    {
-        parent::__construct($config);
-    }
-
-
     /**
      * @return ActiveQuery
      */
