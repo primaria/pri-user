@@ -39,8 +39,6 @@ class Bootstrap implements BootstrapInterface
     {
         /** @var User $module */
         /** @var \yii\db\ActiveRecord $modelName */
-
-
         if ( $app->hasModule('user') && ($module = $app->getModule('user')) instanceof User)
         {
            // unifica el mapeo de modulos

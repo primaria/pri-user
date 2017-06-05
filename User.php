@@ -1,13 +1,22 @@
 <?php
+/*
+ * Este archivo es parte del proyecto Primaria
+ *
+ * (c) Primaria project <http://github.com/primaria/>
+ *
+ */
+
+
 namespace primaria\user;
-
-
-
 
 use yii\base\Module as BaseModule;
 
 /**
- * User module definition class
+ * Modulo de administracion de pri-user.
+ *
+ * @property array $modelMap
+ *
+ * @author primaria
  */
 class User extends BaseModule
 {
@@ -57,6 +66,7 @@ class User extends BaseModule
 
     /** @var array The rules to be used in URL management. */
     public $urlRules = [
+        '<action:(register|resend)>'             => 'registration/<action>',
     ];
 
 }

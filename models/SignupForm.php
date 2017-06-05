@@ -1,10 +1,11 @@
 <?php
 namespace primaria\user\models;
 
+
+
 use yii;
 use yii\base\Model;
-use primaria\user\models\User;
-
+use primaria\user\traits\ModuleTrait;
 
 /**
  * Signup form
@@ -15,8 +16,21 @@ use primaria\user\models\User;
  */
 class SignupForm extends Model
 {
+    use ModuleTrait;
+
+    /**
+     * @var string Username
+     */
     public $username;
+
+    /**
+     * @var string User email address
+     */
     public $email;
+
+    /**
+     * @var string Password
+     */
     public $password;
 
 
@@ -25,6 +39,7 @@ class SignupForm extends Model
      */
     public function rules()
     {
+        $user = $this->model->modelMap['User'];
         return [
             ['username', 'trim'],
             ['username', 'required'],
