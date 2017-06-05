@@ -1,27 +1,25 @@
 <?php
-namespace primaria\user\models;
 
+namespace primaria\user\controllers;
 
-use Yii;
-use yii\base\Model;
+use primaria\user\models\RecoveryForm;
+use yii\filters\AccessControl;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
-use primaria\user\models\RecoveryForm;
-use primaria\user\mail\sendMail;
-use primaria\user\find\findAuth;
+
+
 
 /**
  * RecoveryController manages password recovery process.
  *
  * @property \primaria\user\user $module
  *
- * @author Primaria
+ * @author Dmitry Erofeev <dmeroff@gmail.com>
  */
-class RecoveryForm extends Model
+class RecoveryController extends Controller
 {
-
     /**
-     * Muestra la página donde el usuario puede solicitar la recuperación de contraseñas.
+     * Shows page where user can request password recovery.
      *
      * @return string
      * @throws \yii\web\NotFoundHttpException
@@ -54,6 +52,4 @@ class RecoveryForm extends Model
             'model' => $model,
         ]);
     }
-
-
 }
