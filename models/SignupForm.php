@@ -78,7 +78,7 @@ public function signup()
 
         /** @var User $user */
         $user = Yii::createObject(User::className());
-        //$user = new User();
+        $user->setScenario('register');
         $user->username = $this->username;
         $user->email = $this->email;
         $user->setPassword($this->password);
