@@ -7,7 +7,7 @@ use primaria\user\User;
 
 /**
  * Trait ModuleTrait
- * @property-read Module $model
+ * @property-read Module $module
  * @package primaria\user\traits
  */
 trait ModuleTrait

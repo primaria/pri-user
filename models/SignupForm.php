@@ -1,10 +1,17 @@
 <?php
+/*
+ * Este Archivo es parte del proyecto Primaria
+ *
+ * (c) Primaria project <http://github.com/primaria/>
+ *
+ */
+
+
 namespace primaria\user\models;
 
-
-
-use yii;
+use Yii;
 use yii\base\Model;
+
 use primaria\user\traits\ModuleTrait;
 
 /**
@@ -39,7 +46,8 @@ class SignupForm extends Model
      */
     public function rules()
     {
-        $user = $this->model->modelMap['User'];
+
+
         return [
             ['username', 'trim'],
             ['username', 'required'],
