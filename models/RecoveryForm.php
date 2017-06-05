@@ -4,6 +4,7 @@ namespace primaria\user\models;
 use Yii;
 use yii\base\Model;
 use primaria\user\models\User;
+use primaria\user\find\findAuth;
 
 /**
  * Password reset request form
@@ -71,11 +72,15 @@ class RecoveryForm extends Model
      */
     public function sendEmail()
     {
+
+        if (!$this->validate()) {
+            return false;
+        }
+
+
+
         /* @var $user User */
-        $user = User::findOne([
-            //'status' => User::STATUS_ACTIVE,
-            'email' => $this->email,
-        ]);
+        $user = findAuth::findUserByEmail($this->email);
 
         if (!$user) {
             return false;
