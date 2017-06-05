@@ -20,7 +20,8 @@ class RegisterController extends Controller
      */
     public function actionRegister()
     {
-        $model = new SignupForm();
+        // se instancia SignuoForm
+        $model = \Yii::createObject(SignupForm::className());
 
         if ($model->load(Yii::$app->request->post())) {
             if ($user =  $model->signup()){
