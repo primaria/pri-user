@@ -60,9 +60,9 @@ class Bootstrap implements BootstrapInterface
 
             Yii::$container->setSingleton(findAuth::className(), [
                 'userQuery'    => Yii::$container->get('UserQuery'),
-                'profileQuery' => Yii::$container->get('ProfileQuery'),
-                'tokenQuery'   => Yii::$container->get('TokenQuery'),
-                'accountQuery' => Yii::$container->get('AccountQuery'),
+            //    'profileQuery' => Yii::$container->get('ProfileQuery'),
+            //    'tokenQuery'   => Yii::$container->get('TokenQuery'),
+            //    'accountQuery' => Yii::$container->get('AccountQuery'),
             ]);
 
             Yii::$container->set('yii\web\User', [
