@@ -35,17 +35,27 @@ class RecoveryController extends Controller
             'class'    => RecoveryForm::className(),
             'scenario' => RecoveryForm::SCENARIO_REQUEST,
         ]);
-        $event = $this->getFormEvent($model);
+        //$event = $this->getFormEvent($model);
 
-        $this->performAjaxValidation($model);
-        $this->trigger(self::EVENT_BEFORE_REQUEST, $event);
+        //$this->performAjaxValidation($model);
+        //$this->trigger(self::EVENT_BEFORE_REQUEST, $event);
 
-        if ($model->load(\Yii::$app->request->post()) && $model->sendRecoveryMessage()) {
+        /*if ($model->load(\Yii::$app->request->post()) && $model->sendRecoveryMessage()) {
             $this->trigger(self::EVENT_AFTER_REQUEST, $event);
             return $this->render('/message', [
                 'title'  => \Yii::t('user', 'Recovery message sent'),
                 'module' => $this->module,
             ]);
+        }*/
+
+        if ($model->load(Yii::$app->request->post()) && $model->validate()) {
+            if ($model->sendEmail()) {
+                Yii::$app->session->setFlash('success', 'Check your email for further instructions.');
+
+                return $this->goHome();
+            } else {
+                Yii::$app->session->setFlash('error', 'Sorry, we are unable to reset password for email provided.');
+            }
         }
 
         return $this->render('request', [
