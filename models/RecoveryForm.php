@@ -10,6 +10,9 @@ use primaria\user\models\User;
  */
 class RecoveryForm extends Model
 {
+    const SCENARIO_REQUEST = 'request';
+    const SCENARIO_RESET = 'reset';
+
     public $email;
 
 

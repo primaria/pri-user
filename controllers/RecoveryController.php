@@ -14,7 +14,7 @@ use yii\web\NotFoundHttpException;
  *
  * @property \primaria\user\user $module
  *
- * @author Dmitry Erofeev <dmeroff@gmail.com>
+ * @author Primaria
  */
 class RecoveryController extends Controller
 {
