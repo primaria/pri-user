@@ -93,7 +93,7 @@ class User extends BaseModule
      * @var bool Is the user module in DEBUG mode? Will be set to false automatically
      * if the application leaves DEBUG mode.
      */
-    public $debug = TRUE;
+    public $debug = FALSE;
 
     /** @var array The rules to be used in URL management. */
     public $urlRules = [
