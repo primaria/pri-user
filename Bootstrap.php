@@ -1,9 +1,9 @@
 <?php
 
 /*
- * This file is part of the Dektrium project.
+ * Este archivo es parte del proyecto primaria.
  *
- * (c) Dektrium project <http://github.com/primaria/>
+ * (c) primaria project <http://github.com/primaria/>
  *
  * For the full copyright and license information, please view the LICENSE
  * file that was distributed with this source code.
@@ -21,7 +21,7 @@ use yii\i18n\PhpMessageSource;
  * Bootstrap class registers module and user application component. It also creates some url rules which will be applied
  * when UrlManager.enablePrettyUrl is enabled.
  *
- * @author Dmitry Erofeev <dmeroff@gmail.com>
+ * @author primaria project
  */
 class Bootstrap implements BootstrapInterface
 {
