@@ -70,7 +70,7 @@ class SignupForm extends Model
      *
      * @return User|null the saved model or null if saving fails
      */
-public function signup()
+    public function signup()
     {
         if (!$this->validate()) {
             return null;
@@ -79,11 +79,27 @@ public function signup()
         /** @var User $user */
         $user = Yii::createObject(User::className());
         $user->setScenario('register');
-        $user->username = $this->username;
-        $user->email = $this->email;
-        $user->setPassword($this->password);
-        $user->generateAuthKey();
+        $this->loadAttributes($user);
 
-        return $user->save() ? $user : null;
+        if (!$user->register()) {
+            return false;
+        }
+
+        return true;
+
+    }
+
+    /**
+     * Loads attributes to the user model. You should override this method if you are going to add new fields to the
+     * registration form. You can read more in special guide.
+     *
+     * By default this method set all attributes of this model to the attributes of User model, so you should properly
+     * configure safe attributes of your User model.
+     *
+     * @param User $user
+     */
+    protected function loadAttributes(User $user)
+    {
+        $user->setAttributes($this->attributes);
     }
 }

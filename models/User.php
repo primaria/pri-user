@@ -7,11 +7,18 @@ use yii\behaviors\TimestampBehavior;
 use yii\db\ActiveRecord;
 use yii\web\IdentityInterface;
 use phpDocumentor\Reflection\Types\This;
+use primaria\user\traits\ModuleTrait;
+use primaria\user\find\findAuth;
 
 
 /**
- * User model
+ * User ActiveRecord model.
  *
+ * @property bool    $isAdmin
+ * @property bool    $isBlocked
+ * @property bool    $isConfirmed
+ *
+ * Database fields:
  * @property integer $id
  * @property string  $username
  * @property string  $email
@@ -25,169 +32,80 @@ use phpDocumentor\Reflection\Types\This;
  * @property integer $updated_at
  * @property integer $last_login
  * @property integer $flags
+ *
+ * Defined relations:
+ * @property Account[] $accounts
+ * @property Profile   $profile
+ *
+ * Dependencies:
+ * @property-read Finder $finder
+ * @property-read Module $module
+ * @property-read Mailer $mailer
+ *
+ * @author Dmitry Erofeev <dmeroff@gmail.com>
  */
 class User extends ActiveRecord implements IdentityInterface
 {
-    const STATUS_DELETED = 0;
-    const STATUS_ACTIVE = 10;
+    use ModuleTrait;
 
+    const BEFORE_CREATE   = 'beforeCreate';
+    const AFTER_CREATE    = 'afterCreate';
+    const BEFORE_REGISTER = 'beforeRegister';
+    const AFTER_REGISTER  = 'afterRegister';
+    const BEFORE_CONFIRM  = 'beforeConfirm';
+    const AFTER_CONFIRM   = 'afterConfirm';
+
+    // Las constantes siguientes se utilizan en el proceso de cambio de correo electrónico seguro
+    const OLD_EMAIL_CONFIRMED = 0b1;
+    const NEW_EMAIL_CONFIRMED = 0b10;
+
+    /** @var string Plain password. Used for model validation. */
+    public $password;
+
+    /** @var Profile|null */
+    private $_profile;
+
+    /** @var string Default username regexp */
+    public static $usernameRegexp = '/^[-a-zA-Z0-9_\.@]+$/';
 
     /**
-     * @inheritdoc
+     * @return Finder
+     * @throws \yii\base\InvalidConfigException
      */
-    public static function tableName()
+    protected function getFinder()
     {
-        return '{{%user}}';
+        return \Yii::$container->get(findAuth::className());
     }
 
     /**
-     * @inheritdoc
+     * @return bool Whether the user is confirmed or not.
      */
-    public function behaviors()
+    public function getIsConfirmed()
     {
-        return [
-            TimestampBehavior::className(),
-        ];
+        return $this->confirmed_at != null;
     }
 
     /**
-     * @inheritdoc
+     * @return bool Whether the user is blocked or not.
      */
-    public function rules()
+    public function getIsBlocked()
     {
-        return [];
+        return $this->blocked_at != null;
     }
 
     /**
-     * @inheritdoc
+     * @return bool Whether the user is an admin or not.
      */
-    public static function findIdentity($id)
+    public function getIsAdmin()
     {
-        return static::findOne($id);
+        return
+        (\Yii::$app->getAuthManager() && $this->module->adminPermission ?
+            \Yii::$app->user->can($this->module->adminPermission) : false)
+            || in_array($this->username, $this->module->admins);
     }
 
-    /**
-     * @inheritdoc
-     */
-    public static function findIdentityByAccessToken($token, $type = null)
-    {
-        throw new NotSupportedException('"findIdentityByAccessToken" is not implemented.');
-    }
 
-    /**
-     * Finds user by username
-     *
-     * @param string $username
-     * @return static|null
-     */
-    public static function findByUsername($username)
-    {
-        return static::findOne(['username' => $username]);
-    }
 
-    /**
-     * Finds user by password reset token
-     *
-     * @param string $token password reset token
-     * @return static|null
-     */
-    public static function findByPasswordResetToken($token)
-    {
-        if (!static::isPasswordResetTokenValid($token)) {
-            return null;
-        }
 
-        return static::findOne([
-            'password_reset_token' => $token,
-            'status' => self::STATUS_ACTIVE,
-        ]);
-    }
 
-    /**
-     * Finds out if password reset token is valid
-     *
-     * @param string $token password reset token
-     * @return bool
-     */
-    public static function isPasswordResetTokenValid($token)
-    {
-
-        if (empty($token)) {
-            return false;
-        }
-        $timestamp = (int) substr($token, strrpos($token, '_') + 1);
-        $expire = Yii::$app->params['user.passwordResetTokenExpire'];
-        return $timestamp + $expire >= time();
-    }
-
-    /**
-     * @inheritdoc
-     */
-    public function getId()
-    {
-        return $this->getPrimaryKey();
-    }
-
-    /**
-     * @inheritdoc
-     */
-    public function getAuthKey()
-    {
-        return $this->auth_key;
-    }
-
-    /**
-     * @inheritdoc
-     */
-    public function validateAuthKey($authKey)
-    {
-        return $this->getAuthKey() === $authKey;
-    }
-
-    /**
-     * Validates password
-     *
-     * @param string $password password to validate
-     * @return bool if password provided is valid for current user
-     */
-    public function validatePassword($password)
-    {
-        return Yii::$app->security->validatePassword($password, $this->password_hash);;
-    }
-
-    /**
-     * Generates password hash from password and sets it to the model
-     *
-     * @param string $password
-     */
-    public function setPassword($password)
-    {
-        $this->password_hash = Yii::$app->security->generatePasswordHash($password);
-    }
-
-    /**
-     * Generates "remember me" authentication key
-     */
-    public function generateAuthKey()
-    {
-        $this->auth_key = Yii::$app->security->generateRandomString();
-    }
-
-    /**
-     * Generates new password reset token
-     */
-    public function generatePasswordResetToken()
-    {
-
-        $this->password_reset_token = Yii::$app->security->generateRandomString() . '_' . time();
-
-    }
-
-    /**
-     * Removes password reset token
-     */
-    public function removePasswordResetToken()
-    {
-        $this->password_reset_token = null;
-    }
 }
