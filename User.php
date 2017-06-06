@@ -1,42 +1,74 @@
 <?php
+
 /*
- * Este archivo es parte del proyecto Primaria
+ * This file is part of the Primaria project
  *
- * (c) Primaria project <http://github.com/primaria/>
+ * (c) Primaria project
  *
  */
-
 
 namespace primaria\user;
 
 use yii\base\Module as BaseModule;
 
 /**
- * Modulo de administracion de pri-user.
+ * This is the main module class for the Yii2-user.
  *
  * @property array $modelMap
  *
- * @author primaria
+ * @author Dmitry Erofeev <dmeroff@gmail.com>
  */
 class User extends BaseModule
 {
-    protected $version = "0.1.0";
+    const VERSION = '0.1.0';
 
+    /** Email is changed right after user enter's new email address. */
+    const STRATEGY_INSECURE = 0;
 
+    /** Email is changed after user clicks confirmation link sent to his new email address. */
+    const STRATEGY_DEFAULT = 1;
 
-    /** @var bool Activa la opcion de registro
-     * True, muestra la opcion de registro
-     * false, oculta la opcion de registro*/
+    /** Email is changed after user clicks both confirmation links sent to his old and new email addresses. */
+    const STRATEGY_SECURE = 2;
+
+    /** @var bool Whether to show flash messages. */
+    public $enableFlashMessages = true;
+
+    /** @var bool Whether to enable registration. */
     public $enableRegistration = true;
 
-    /** @var bool Activa la recuperacion de la password
-     * True, autoriza la recuperacion de la password
-     * false, no autoriza la recuperacion de la password */
-    public $enablePasswordRecovery = TRUE;
+    /** @var bool Whether to remove password field from registration form. */
+    public $enableGeneratingPassword = false;
 
-    /** @var int Tiempo que el usuario sea recordado sin pedir credenciales */
-    public $rememberTime = 1209600; // two weeks
+    /** @var bool Whether user has to confirm his account. */
+    public $enableConfirmation = true;
 
+    /** @var bool Whether to allow logging in without confirmation. */
+    public $enableUnconfirmedLogin = false;
+
+    /** @var bool Whether to enable password recovery. */
+    public $enablePasswordRecovery = true;
+
+    /** @var bool Whether user can remove his account */
+    public $enableAccountDelete = false;
+
+    /** @var bool Enable the 'impersonate as another user' function */
+    public $enableImpersonateUser = true;
+
+    /** @var int Email changing strategy. */
+    public $emailChangeStrategy = self::STRATEGY_DEFAULT;
+
+    /** @var int The time you want the user will be remembered without asking for credentials. */
+    public $rememberFor = 1209600; // two weeks
+
+    /** @var int The time before a confirmation token becomes invalid. */
+    public $confirmWithin = 86400; // 24 hours
+
+    /** @var int The time before a recovery token becomes invalid. */
+    public $recoverWithin = 21600; // 6 hours
+
+    /** @var int Cost parameter used by the Blowfish hash algorithm. */
+    public $cost = 10;
 
     /** @var array An array of administrator's usernames. */
     public $admins = [];
@@ -50,25 +82,27 @@ class User extends BaseModule
     /** @var array Model map */
     public $modelMap = [];
 
-
-
     /**
-     * Get module version
-     * @return string
+     * @var string The prefix for user module URL.
+     *
+     * @See [[GroupUrlRule::prefix]]
      */
-    public function getVersion()
-    {
-        return $this->version;
-    }
-
     public $urlPrefix = 'user';
 
+    /**
+     * @var bool Is the user module in DEBUG mode? Will be set to false automatically
+     * if the application leaves DEBUG mode.
+     */
+    public $debug = false;
 
     /** @var array The rules to be used in URL management. */
     public $urlRules = [
-        '<action:(login|logout|auth)>'           => 'manager/<action>',
-        '<action:(register|resend)>'             => 'register/<action>',
+        '<id:\d+>'                               => 'profile/show',
+        '<action:(login|logout|auth)>'           => 'security/<action>',
+        '<action:(register|resend)>'             => 'registration/<action>',
+        'confirm/<id:\d+>/<code:[A-Za-z0-9_-]+>' => 'registration/confirm',
+        'forgot'                                 => 'recovery/request',
+        'recover/<id:\d+>/<code:[A-Za-z0-9_-]+>' => 'recovery/reset',
+        'settings/<action:\w+>'                  => 'settings/<action>'
     ];
-
 }
-
