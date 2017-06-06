@@ -38,7 +38,7 @@ class User extends BaseModule
     public $enableRegistration = true;
 
     /** @var bool Whether to remove password field from registration form. */
-    public $enableGeneratingPassword = false;
+    public $enableGeneratingPassword = TRUE;
 
     /** @var bool Whether user has to confirm his account. */
     public $enableConfirmation = true;
