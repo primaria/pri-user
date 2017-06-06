@@ -42,7 +42,7 @@ class Bootstrap implements BootstrapInterface
     /** @inheritdoc */
     public function bootstrap($app)
     {
-        /** @var Module $module */
+        /** @var User $module */
         /** @var \yii\db\ActiveRecord $modelName */
         if ($app->hasModule('user') && ($module = $app->getModule('user')) instanceof User) {
             $this->_modelMap = array_merge($this->_modelMap, $module->modelMap);
