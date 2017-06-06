@@ -66,7 +66,8 @@ class User extends BaseModule
 
     /** @var array The rules to be used in URL management. */
     public $urlRules = [
-        '<action:(register|resend)>'             => 'registration/<action>',
+        '<action:(login|logout|auth)>'           => 'manager/<action>',
+        '<action:(register|resend)>'             => 'register/<action>',
     ];
 
 }
