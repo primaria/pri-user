@@ -44,7 +44,7 @@ class Bootstrap implements BootstrapInterface
     {
         /** @var Module $module */
         /** @var \yii\db\ActiveRecord $modelName */
-        if ($app->hasModule('user') && ($module = $app->getModule('user')) instanceof Module) {
+        if ($app->hasModule('user') && ($module = $app->getModule('user')) instanceof User) {
             $this->_modelMap = array_merge($this->_modelMap, $module->modelMap);
             foreach ($this->_modelMap as $name => $definition) {
                 $class = "primaria\\user\\models\\" . $name;
